@@ -33,7 +33,14 @@ scrape_configs:
     honor_labels: true
     static_configs:
       - targets: ['pushgateway:9091']
-
+   
+  - job_name: 'coda-testnet'
+    metrics_path: /metrics
+    scheme: http
+    static_configs:
+      - targets: ['localhost:6060','localhost:9100']
+        labels:
+          hostname: 'coda-daemon'
 
 alerting:
   alertmanagers:
@@ -41,6 +48,8 @@ alerting:
     static_configs:
     - targets: 
       - 'alertmanager:9093'
+
+
 
 #  - job_name: 'nginx'
 #    scrape_interval: 10s
@@ -51,3 +60,4 @@ alerting:
 #    scrape_interval: 10s
 #    static_configs:
 #      - targets: ['eventlog-proxy:5000', 'eventlog:5000']
+#
