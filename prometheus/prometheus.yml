@@ -37,8 +37,9 @@ scrape_configs:
   - job_name: 'coda-testnet'
     metrics_path: /metrics
     scheme: http
+    scrape_interval: 15s
     static_configs:
-      - targets: ['localhost:6060','localhost:9100']
+      - targets: ['<ADD-IP-ADDRESS>:6060']
         labels:
           hostname: 'coda-daemon'
 
