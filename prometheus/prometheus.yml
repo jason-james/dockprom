@@ -39,7 +39,7 @@ scrape_configs:
     scheme: http
     scrape_interval: 15s
     static_configs:
-      - targets: ['<ADD-IP-ADDRESS>:6060']
+      - targets: ['<YOUR-NODE-ADDRESS>:6060']
         labels:
           hostname: 'coda-daemon'
 
