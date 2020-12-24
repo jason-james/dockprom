@@ -67,7 +67,7 @@ Grafana is preconfigured with dashboards and Prometheus as the default data sour
 The Mina Metrics dashboard shows key metrics for your node and the Mina network. Use it to keep track of uptime, hardware info, and block production statistics. An equivalent
 dashboard for Snark Producing is coming soon.
 
-![Mina](screens/Mina.png)
+![Mina](screens/Mina.PNG)
 
 For your Mina node metrics to be picked up, you must ensure you pass the `-metrics-port 6060` flag when you start your node, and add your node's IP address on line 42 of `/prometheus/prometheus.yml`. If you are running your Mina node via Docker, you must also add `-p 6060:6060` to your docker run command.
 
