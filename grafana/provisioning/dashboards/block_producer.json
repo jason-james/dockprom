@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 7,
-  "iteration": 1606503546550,
+  "id": 3,
+  "iteration": 1608824481430,
   "links": [],
   "panels": [
     {
@@ -30,7 +30,7 @@
       },
       "id": 130,
       "panels": [],
-      "title": "Server Health",
+      "title": "Mina",
       "type": "row"
     },
     {
@@ -109,6 +109,153 @@
       "type": "stat"
     },
     {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#2995d7",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 97
+              },
+              {
+                "color": "yellow",
+                "value": 98
+              },
+              {
+                "color": "rgb(61, 169, 235)",
+                "value": 99
+              },
+              {
+                "color": "#2995d7",
+                "value": 99.9
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 4,
+        "y": 1
+      },
+      "id": 93,
+      "interval": "",
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.3.3",
+      "targets": [
+        {
+          "expr": "Coda_Block_producer_blocks_produced * 100 / Coda_Block_producer_slots_won",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
+        }
+      ],
+      "timeFrom": "30d",
+      "timeShift": null,
+      "title": "Block Producer Rate",
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#2995d7",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 8,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 94,
+      "interval": "",
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.3.3",
+      "targets": [
+        {
+          "expr": "Coda_Block_producer_slots_won",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Slots",
+          "refId": "A"
+        },
+        {
+          "expr": "Coda_Block_producer_blocks_produced",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Produced",
+          "refId": "C"
+        },
+        {
+          "expr": "Coda_Block_producer_slots_won - Coda_Block_producer_blocks_produced",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Gap (slots - produced)",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": "30d",
+      "timeShift": null,
+      "title": "Block Producer Stats",
+      "type": "stat"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -128,8 +275,8 @@
       "grid": {},
       "gridPos": {
         "h": 7,
-        "w": 20,
-        "x": 4,
+        "w": 13,
+        "x": 11,
         "y": 1
       },
       "hiddenSeries": false,
@@ -403,6 +550,125 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 3,
+      "gridPos": {
+        "h": 7,
+        "w": 11,
+        "x": 0,
+        "y": 8
+      },
+      "hiddenSeries": false,
+      "id": 110,
+      "interval": "",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "coda-daemon",
+          "color": "#5794F2"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": true,
+      "targets": [
+        {
+          "expr": "Coda_Network_peers\n",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{hostname}}",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "24h",
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Connected Peers",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
       "decimals": 2,
       "editable": true,
       "error": false,
@@ -416,9 +682,9 @@
       "fillGradient": 0,
       "grid": {},
       "gridPos": {
-        "h": 6,
-        "w": 24,
-        "x": 0,
+        "h": 7,
+        "w": 13,
+        "x": 11,
         "y": 8
       },
       "hiddenSeries": false,
@@ -517,206 +783,32 @@
       }
     },
     {
-      "collapsed": false,
-      "datasource": "Prometheus",
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 14
+      "aliasColors": {
+        "coda-daemon": "#2995d7"
       },
-      "id": 70,
-      "panels": [],
-      "title": "Mina Metrics",
-      "type": "row"
-    },
-    {
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 2,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#2995d7",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 97
-              },
-              {
-                "color": "yellow",
-                "value": 98
-              },
-              {
-                "color": "rgb(61, 169, 235)",
-                "value": 99
-              },
-              {
-                "color": "#2995d7",
-                "value": 99.9
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 4,
-        "x": 0,
-        "y": 15
-      },
-      "id": 93,
-      "interval": "",
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.3.3",
-      "targets": [
-        {
-          "expr": "Coda_Block_producer_blocks_produced * 100 / Coda_Block_producer_slots_won",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "C"
-        }
-      ],
-      "timeFrom": "30d",
-      "timeShift": null,
-      "title": "Block Producer Rate",
-      "type": "stat"
-    },
-    {
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "decimals": 0,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#2995d7",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 4,
-        "x": 4,
-        "y": 15
-      },
-      "hideTimeOverride": true,
-      "id": 94,
-      "interval": "",
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.3.3",
-      "targets": [
-        {
-          "expr": "Coda_Block_producer_slots_won",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Slots",
-          "refId": "A"
-        },
-        {
-          "expr": "Coda_Block_producer_blocks_produced",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Produced",
-          "refId": "C"
-        },
-        {
-          "expr": "Coda_Block_producer_slots_won - Coda_Block_producer_blocks_produced",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Gap (slots - produced)",
-          "refId": "B"
-        }
-      ],
-      "timeFrom": "30d",
-      "timeShift": null,
-      "title": "Block Producer Stats",
-      "type": "stat"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
+      "bars": true,
+      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "",
+      "description": "Average delay, in slots, after which produced blocks are received",
       "fieldConfig": {
         "defaults": {
           "custom": {},
-          "decimals": 0,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
           "unit": "none"
         },
         "overrides": []
       },
       "fill": 1,
-      "fillGradient": 3,
+      "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 8,
-        "x": 8,
+        "x": 0,
         "y": 15
       },
       "hiddenSeries": false,
-      "id": 110,
-      "interval": "",
+      "id": 119,
       "legend": {
         "avg": false,
         "current": false,
@@ -728,6 +820,7 @@
       },
       "lines": true,
       "linewidth": 1,
+      "links": [],
       "nullPointMode": "null",
       "options": {
         "alertThreshold": true
@@ -739,27 +832,25 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "coda-daemon",
-          "color": "#5794F2"
+          "color": "#2995d7"
         }
       ],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
       "targets": [
         {
-          "expr": "Coda_Network_peers\n",
-          "instant": false,
-          "interval": "",
+          "expr": "delta(Coda_Network_messages_received[1h])",
+          "interval": "1h",
           "legendFormat": "{{hostname}}",
-          "refId": "C"
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": "24h",
       "timeRegions": [],
       "timeShift": null,
-      "title": "Connected Peers",
+      "title": "delta(Messages Received) per 1 hour interval",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -776,6 +867,111 @@
       "yaxes": [
         {
           "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "coda-daemon": "#2995d7"
+      },
+      "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "Average delay, in seconds, after which produced blocks are received",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 3,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 15
+      },
+      "hiddenSeries": false,
+      "id": 118,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "color": "#2995d7"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "Coda_Block_latency_gossip_time",
+          "interval": "",
+          "legendFormat": "{{hostname}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "24h",
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Block Gossip Latency (Time)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -924,7 +1120,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "Average delay, in slots, after which produced blocks are received",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -933,7 +1128,7 @@
         "overrides": []
       },
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 3,
       "gridPos": {
         "h": 8,
         "w": 8,
@@ -941,7 +1136,7 @@
         "y": 23
       },
       "hiddenSeries": false,
-      "id": 119,
+      "id": 115,
       "legend": {
         "avg": false,
         "current": false,
@@ -973,8 +1168,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "delta(Coda_Network_messages_received[1h])",
-          "interval": "1h",
+          "expr": "Coda_Transition_frontier_tps_30min",
+          "interval": "30m",
           "legendFormat": "{{hostname}}",
           "refId": "A"
         }
@@ -983,7 +1178,7 @@
       "timeFrom": "24h",
       "timeRegions": [],
       "timeShift": null,
-      "title": "delta(Messages Received) per 1 hour interval",
+      "title": "Mina Blockchain TPS",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1000,7 +1195,7 @@
       "yaxes": [
         {
           "format": "none",
-          "label": null,
+          "label": "Transactions",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -1029,11 +1224,11 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "Average delay, in seconds, after which produced blocks are received",
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {},
-          "unit": "s"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -1046,7 +1241,7 @@
         "y": 23
       },
       "hiddenSeries": false,
-      "id": 118,
+      "id": 120,
       "legend": {
         "avg": false,
         "current": false,
@@ -1078,7 +1273,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Coda_Block_latency_gossip_time",
+          "expr": "Coda_Transition_frontier_slot_fill_rate * 100",
           "interval": "",
           "legendFormat": "{{hostname}}",
           "refId": "A"
@@ -1088,7 +1283,7 @@
       "timeFrom": "24h",
       "timeRegions": [],
       "timeShift": null,
-      "title": "Block Gossip Latency (Time)",
+      "title": "Avg Network Slot Fill Rate",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1104,8 +1299,8 @@
       },
       "yaxes": [
         {
-          "format": "s",
-          "label": null,
+          "format": "percent",
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -1117,7 +1312,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -1237,319 +1432,6 @@
           "max": null,
           "min": null,
           "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {
-        "coda-daemon": "#2995d7"
-      },
-      "bars": true,
-      "cacheTimeout": null,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 3,
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 0,
-        "y": 31
-      },
-      "hiddenSeries": false,
-      "id": 115,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.3.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "color": "#2995d7"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "Coda_Transition_frontier_tps_30min",
-          "interval": "30m",
-          "legendFormat": "{{hostname}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": "24h",
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Mina Blockchain TPS",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": "Transactions",
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {
-        "coda-daemon": "#2995d7"
-      },
-      "bars": false,
-      "cacheTimeout": null,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 3,
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 8,
-        "y": 31
-      },
-      "hiddenSeries": false,
-      "id": 101,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.3.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "color": "#2995d7"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "delta(Coda_Consensus_vrf_evaluations[3h])",
-          "interval": "3h",
-          "legendFormat": "{{hostname}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": "24h",
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "delta(VRF evaluations performed) per 3 hour intervals",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {
-        "coda-daemon": "#2995d7"
-      },
-      "bars": false,
-      "cacheTimeout": null,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 3,
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 16,
-        "y": 31
-      },
-      "hiddenSeries": false,
-      "id": 120,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.3.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "color": "#2995d7"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "Coda_Transition_frontier_slot_fill_rate * 100",
-          "interval": "",
-          "legendFormat": "{{hostname}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": "24h",
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Avg Network Slot Fill Rate",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percent",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
         }
       ],
       "yaxis": {
@@ -1707,8 +1589,8 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "07b0f54c7b0e",
-          "value": "07b0f54c7b0e"
+          "text": "b59003b586e0",
+          "value": "b59003b586e0"
         },
         "datasource": "Prometheus",
         "definition": "label_values(node_uname_info{job=~\"$job\",instance=~\"$node\"}, nodename)",
@@ -1752,5 +1634,5 @@
   "timezone": "browser",
   "title": "Mina: Node Monitoring",
   "uid": "Ql5IWeGMk",
-  "version": 15
+  "version": 2
 }
