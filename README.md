@@ -5,13 +5,13 @@ A monitoring solution for Docker hosts and containers with [Prometheus](https://
 
 ## Install
 
-Clone this repository on your Docker host, cd into minamonitor directory and run docker-compose up:
+Clone this repository on your Docker host, cd into minamonitor directory, add your node address in [prometheus/prometheus.yml](/prometheus/prometheus.yml) and run docker-compose up:
 
 ```bash
-git clone https://github.com/jason-james/minamonitor
-cd minamonitor
-
-ADMIN_USER=admin ADMIN_PASSWORD=admin docker-compose up -d
+$ git clone https://github.com/jason-james/minamonitor
+$ cd minamonitor
+$ vim prometheus/prometheus.yml # Then add your node address on line 42 and save
+$ ADMIN_USER=admin ADMIN_PASSWORD=admin docker-compose up -d
 ```
 
 Prerequisites:
